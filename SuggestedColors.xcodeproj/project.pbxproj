@@ -15,7 +15,6 @@
 		9572F60A19F6CA560041B31C /* ColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572F60119F6CA560041B31C /* ColorsViewController.m */; };
 		9572F60B19F6CA560041B31C /* ColorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9572F60219F6CA560041B31C /* ColorsViewController.xib */; };
 		9572F60C19F6CA560041B31C /* SuggestedColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9572F60619F6CA560041B31C /* SuggestedColors.m */; };
-		9572F60D19F6CA560041B31C /* SuggestedColors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9572F60719F6CA560041B31C /* SuggestedColors.plist */; };
 		9572F61219F6CADE0041B31C /* IBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9572F60F19F6CADE0041B31C /* IBFoundation.framework */; };
 		9572F61319F6CADE0041B31C /* IDEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9572F61019F6CADE0041B31C /* IDEFoundation.framework */; };
 		9572F61419F6CADE0041B31C /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9572F61119F6CADE0041B31C /* IDEKit.framework */; };
@@ -37,7 +36,6 @@
 		9572F60419F6CA560041B31C /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
 		9572F60519F6CA560041B31C /* SuggestedColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedColors.h; sourceTree = "<group>"; };
 		9572F60619F6CA560041B31C /* SuggestedColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedColors.m; sourceTree = "<group>"; };
-		9572F60719F6CA560041B31C /* SuggestedColors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SuggestedColors.plist; sourceTree = "<group>"; };
 		9572F60F19F6CADE0041B31C /* IBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IBFoundation.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IBFoundation.framework; sourceTree = "<group>"; };
 		9572F61019F6CADE0041B31C /* IDEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEFoundation.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framework; sourceTree = "<group>"; };
 		9572F61119F6CADE0041B31C /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -95,8 +93,7 @@
 				9572F61519F6CC2D0041B31C /* PrefencesView_WIP */,
 				9572F60519F6CA560041B31C /* SuggestedColors.h */,
 				9572F60619F6CA560041B31C /* SuggestedColors.m */,
-				9572F60719F6CA560041B31C /* SuggestedColors.plist */,
-				9572F60319F6CA560041B31C /* IBHeaders */,
+				9572F60319F6CA560041B31C /* Headers */,
 				9572F5E019F6CA080041B31C /* Supporting Files */,
 			);
 			path = SuggestedColors;
@@ -111,11 +108,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9572F60319F6CA560041B31C /* IBHeaders */ = {
+		9572F60319F6CA560041B31C /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				9572F60419F6CA560041B31C /* Headers.h */,
 			);
+			name = Headers;
 			path = IBHeaders;
 			sourceTree = "<group>";
 		};
@@ -198,7 +196,6 @@
 			files = (
 				9572F60B19F6CA560041B31C /* ColorsViewController.xib in Resources */,
 				9572F5E319F6CA080041B31C /* SuggestedColors.xcscheme in Resources */,
-				9572F60D19F6CA560041B31C /* SuggestedColors.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

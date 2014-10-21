@@ -14,6 +14,8 @@
 #import "Headers.h"
 #import "ColorsViewController.h"
 
+static NSString * const IDEEditorDocumentDidChangeNotification = @"IDEEditorDocumentDidChangeNotification";
+
 #define NSColorFromRGB(rgbValue) [NSColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 static SuggestedColors *sharedPlugin;
@@ -23,7 +25,9 @@ static SuggestedColors *sharedPlugin;
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 @property (nonatomic, strong) NSMutableDictionary *suggestedColorsDic;
 @property (nonatomic, strong) NSString *projectFilePath;
-
+@property (nonatomic, assign) BOOL menuItemAlreadyCreated;
+@property (nonatomic, strong) NSMenuItem * createFileMenuItem;
+@property (nonatomic, strong) NSMenuItem * separatorItem;
 @end
 
 @implementation SuggestedColors
@@ -55,9 +59,15 @@ static SuggestedColors *sharedPlugin;
                                                    name:NSWindowDidBecomeMainNotification
                                                  object:nil];
       
+//      [[NSNotificationCenter defaultCenter] addObserver:self
+//                                               selector:@selector(notificationListener:)
+//                                                   name:nil
+//                                                 object:nil];
+      
+      
       [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(notificationListener:)
-                                                   name:nil
+                                               selector:@selector(documentDidChange:)
+                                                   name:IDEEditorDocumentDidChangeNotification
                                                  object:nil];
       
       NSError * error;
@@ -69,21 +79,6 @@ static SuggestedColors *sharedPlugin;
               colorPicker.suggestedColors = [self.suggestedColorsDic objectForKey:@"colors"];
           }
       }error:&error];
-      
-
-      
-		// Create menu items, initialize UI, etc.
-		// Sample Menu Item:
-      NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-      
-      if(editMenuItem)
-      {
-          [editMenuItem.submenu addItem:[NSMenuItem separatorItem]];
-          
-          NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Reload colors" action:@selector(reloadColors:) keyEquivalent:@""];
-          [actionMenuItem setTarget:self];
-          [[editMenuItem submenu] addItem:actionMenuItem];
-      }
 
 	}
 	return self;
@@ -101,8 +96,6 @@ static SuggestedColors *sharedPlugin;
         
         self.projectFilePath = [representingFilePath.pathString stringByReplacingOccurrencesOfString:@".xcodeproj"
                                                                                         withString:@"/"];
-        
-        
         [self reloadColors:nil];
 
     }
@@ -127,13 +120,61 @@ static SuggestedColors *sharedPlugin;
         [self.suggestedColorsDic setObject:newDic forKey:@"colors"];
     }
     else{
+        
+        // Create menu items, initialize UI, etc.
+        // Sample Menu Item:
+        
+        if(!self.menuItemAlreadyCreated)
+        {
+            NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+            
+            if(editMenuItem)
+            {
+                self.separatorItem = [NSMenuItem separatorItem];
+                [editMenuItem.submenu addItem:self.separatorItem];
+                
+                self.createFileMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create suggested colors " action:@selector(createSuggestedColorsFile:) keyEquivalent:@""];
+                [self.createFileMenuItem setTarget:self];
+                [[editMenuItem submenu] addItem:self.createFileMenuItem];
+                
+                self.menuItemAlreadyCreated = YES;
+            }
+        }
+
+        
         NSLog(@"Suggested colors file not found...");
+    }
+}
+
+-(void) createSuggestedColorsFile:(id) sender
+{
+    NSString * filePath = [self.projectFilePath stringByAppendingPathComponent:@"SuggestedColors.plist"];
+    NSDictionary * dictionary = @{@"colors" : @{@"My Custom Color" : @"ff7373"}};
+    [dictionary writeToFile:filePath atomically:YES];
+    
+    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
+    if(editMenuItem)
+    {
+        [editMenuItem.submenu removeItem:self.separatorItem];
+        [editMenuItem.submenu removeItem:self.createFileMenuItem];
     }
 }
 
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) documentDidChange:(NSNotification *) notification
+{
+    id doc = notification.object;
+    if([doc isKindOfClass:objc_getClass("IDEPlistDocument")])
+    {
+        if ([[[doc filePath] fileName] isEqualToString:@"SuggestedColors.plist"]) {
+            [self reloadColors:nil];
+        }
+        
+    }
 }
 
 -(void)notificationListener:(NSNotification *)notification {

@@ -149,3 +149,12 @@
 
 @end
 
+
+@interface IDEEditorDocument : NSDocument
+@property(retain) DVTFilePath *filePath; // @synthesize filePath=_filePath;
+@end
+
+
+@interface IDEPlistDocument : IDEEditorDocument
+
+@end
