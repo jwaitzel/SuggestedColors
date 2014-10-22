@@ -13,8 +13,12 @@
 #import <AppKit/AppKit.h>
 #import "Headers.h"
 #import "ColorsViewController.h"
+#import "XcodeEditor.h"
 
 static NSString * const IDEEditorDocumentDidChangeNotification = @"IDEEditorDocumentDidChangeNotification";
+
+static NSString * const SuggestedColorsPlistName = @"SuggestedColors.plist";
+
 
 #define NSColorFromRGB(rgbValue) [NSColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -24,7 +28,8 @@ static SuggestedColors *sharedPlugin;
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
 @property (nonatomic, strong) NSMutableDictionary *suggestedColorsDic;
-@property (nonatomic, strong) NSString *projectFilePath;
+@property (nonatomic, strong) NSString *projectBundlePath;
+@property (nonatomic, strong) NSString *projectWorkspacePath;
 @property (nonatomic, assign) BOOL menuItemAlreadyCreated;
 @property (nonatomic, strong) NSMenuItem * createFileMenuItem;
 @property (nonatomic, strong) NSMenuItem * separatorItem;
@@ -94,7 +99,10 @@ static SuggestedColors *sharedPlugin;
         IDEWorkspace *workspace = (IDEWorkspace *)[workspaceWindowController valueForKey:@"_workspace"];
         DVTFilePath *representingFilePath = workspace.representingFilePath;
         
-        self.projectFilePath = [representingFilePath.pathString stringByReplacingOccurrencesOfString:@".xcodeproj"
+        self.projectWorkspacePath = [representingFilePath.pathString stringByReplacingOccurrencesOfString:@".xcworkspace"
+                                                                                               withString:@".xcodeproj"];
+        
+        self.projectBundlePath = [representingFilePath.pathString stringByReplacingOccurrencesOfString:@".xcodeproj"
                                                                                         withString:@"/"];
         [self reloadColors:nil];
 
@@ -103,11 +111,13 @@ static SuggestedColors *sharedPlugin;
 
 -(void) reloadColors:(id) sender
 {
-    NSString * filePath = [self.projectFilePath stringByAppendingPathComponent:@"SuggestedColors.plist"];
-    if([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    XCProject * proj = [[XCProject alloc] initWithFilePath:self.projectWorkspacePath];
+    XCSourceFile * suggestedColorsFile = [proj fileWithName:SuggestedColorsPlistName];
+    
+    if(suggestedColorsFile)
     {
-        
-        self.suggestedColorsDic = [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithContentsOfFile:filePath]];
+        NSString * pathFile = [[[proj filePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[suggestedColorsFile pathRelativeToProjectRoot]];
+        self.suggestedColorsDic = [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithContentsOfFile:pathFile]];
         
         NSMutableDictionary * newDic = [NSMutableDictionary dictionary];
         for (NSString * color in [self.suggestedColorsDic objectForKey:@"colors"]) {
@@ -123,7 +133,6 @@ static SuggestedColors *sharedPlugin;
         
         // Create menu items, initialize UI, etc.
         // Sample Menu Item:
-        
         if(!self.menuItemAlreadyCreated)
         {
             NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
@@ -133,7 +142,7 @@ static SuggestedColors *sharedPlugin;
                 self.separatorItem = [NSMenuItem separatorItem];
                 [editMenuItem.submenu addItem:self.separatorItem];
                 
-                self.createFileMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create suggested colors " action:@selector(createSuggestedColorsFile:) keyEquivalent:@""];
+                self.createFileMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create suggested colors file" action:@selector(createSuggestedColorsFile:) keyEquivalent:@""];
                 [self.createFileMenuItem setTarget:self];
                 [[editMenuItem submenu] addItem:self.createFileMenuItem];
                 
@@ -148,9 +157,12 @@ static SuggestedColors *sharedPlugin;
 
 -(void) createSuggestedColorsFile:(id) sender
 {
-    NSString * filePath = [self.projectFilePath stringByAppendingPathComponent:@"SuggestedColors.plist"];
-    NSDictionary * dictionary = @{@"colors" : @{@"My Custom Color" : @"ff7373"}};
-    [dictionary writeToFile:filePath atomically:YES];
+    NSDictionary * dictionary = @{@"colors" : @{@"My Custom Color" : @"ff7373"}, @"useMyColors" : @YES};
+    NSError * error;
+    NSData * dicDat = [NSPropertyListSerialization dataWithPropertyList:dictionary format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+    if (error) {
+        return;
+    }
     
     NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
     if(editMenuItem)
@@ -158,6 +170,19 @@ static SuggestedColors *sharedPlugin;
         [editMenuItem.submenu removeItem:self.separatorItem];
         [editMenuItem.submenu removeItem:self.createFileMenuItem];
     }
+    
+    XCProject * proj = [[XCProject alloc] initWithFilePath:self.projectWorkspacePath];
+    NSString * projName = [[[proj filePath] lastPathComponent] stringByDeletingPathExtension];
+    XCGroup * topGroup = [[proj rootGroup] memberWithDisplayName:projName];
+    if(!topGroup)
+    {
+        topGroup = [proj rootGroup];
+    }
+    
+    XCSourceFileDefinition * sourceFileDef = [XCSourceFileDefinition sourceDefinitionWithName:SuggestedColorsPlistName data:dicDat type:PropertyList];
+    [topGroup addSourceFile:sourceFileDef];
+    [proj save];
+
 }
 
 
@@ -170,7 +195,7 @@ static SuggestedColors *sharedPlugin;
     id doc = notification.object;
     if([doc isKindOfClass:objc_getClass("IDEPlistDocument")])
     {
-        if ([[[doc filePath] fileName] isEqualToString:@"SuggestedColors.plist"]) {
+        if ([[[doc filePath] fileName] isEqualToString:SuggestedColorsPlistName]) {
             [self reloadColors:nil];
         }
         
