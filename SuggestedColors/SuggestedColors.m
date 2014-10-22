@@ -142,14 +142,13 @@ static SuggestedColors *sharedPlugin;
                 self.separatorItem = [NSMenuItem separatorItem];
                 [editMenuItem.submenu addItem:self.separatorItem];
                 
-                self.createFileMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create suggested colors file" action:@selector(createSuggestedColorsFile:) keyEquivalent:@""];
+                self.createFileMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create SuggestedColors file" action:@selector(createSuggestedColorsFile:) keyEquivalent:@""];
                 [self.createFileMenuItem setTarget:self];
                 [[editMenuItem submenu] addItem:self.createFileMenuItem];
                 
                 self.menuItemAlreadyCreated = YES;
             }
         }
-
         
         NSLog(@"Suggested colors file not found...");
     }
