@@ -27,5 +27,5 @@ In any case, relaunch Xcode to load it.
 
 ## Help needed
 
-Tweet me at [@javiwaitzel](https://twitter.com/javiwaitzel) or email me at [jwaitzel@gmail.com](jwaitzel@gmail.com)
+Tweet me at [@javiwaitzel](https://twitter.com/javiwaitzel) or email me at [jwaitzel@gmail.com](mailto:jwaitzel@gmail.com)
 
