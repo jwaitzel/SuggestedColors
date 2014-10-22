@@ -7,6 +7,13 @@ Xcode plugin for replace the suggested colors in xcode.
 
 ## Installation
 
+![Screenshot](https://raw.githubusercontent.com/jwaitzel/SuggestedColors/master/CreateFile.png)
+
+Go to Edit->Crate SuggestedColors file and a plist will be created. Add colors there with NAME and HEX VALUE
+
+## Important - Do not change plist file name
+For now :P
+
 Either
 
 - Install it via [Alcatraz](http://alcatraz.io/)
