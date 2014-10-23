@@ -23,6 +23,7 @@
 		9504D64819F72DBA007404CA /* XCSubProjectDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D63619F72DBA007404CA /* XCSubProjectDefinition.m */; };
 		9504D64919F72DBA007404CA /* XCTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D63819F72DBA007404CA /* XCTarget.m */; };
 		9504D64A19F72DBA007404CA /* XCXibDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D63A19F72DBA007404CA /* XCXibDefinition.m */; };
+		9551703A19F99F2300D1FEDF /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9551703919F99F2300D1FEDF /* Storyboard.storyboard */; };
 		9572F5DC19F6CA080041B31C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9572F5DB19F6CA080041B31C /* AppKit.framework */; };
 		9572F5DE19F6CA080041B31C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9572F5DD19F6CA080041B31C /* Foundation.framework */; };
 		9572F5E319F6CA080041B31C /* SuggestedColors.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 9572F5E219F6CA080041B31C /* SuggestedColors.xcscheme */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BAE29B09F03FADB483809E0 /* SuggestedColors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SuggestedColors.plist; sourceTree = "<group>"; };
 		9504D61919F72DBA007404CA /* XCKeyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCKeyBuilder.h; sourceTree = "<group>"; };
 		9504D61A19F72DBA007404CA /* XCKeyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCKeyBuilder.m; sourceTree = "<group>"; };
 		9504D61B19F72DBA007404CA /* XCAbstractDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCAbstractDefinition.h; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		9504D63819F72DBA007404CA /* XCTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTarget.m; sourceTree = "<group>"; };
 		9504D63919F72DBA007404CA /* XCXibDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCXibDefinition.h; sourceTree = "<group>"; };
 		9504D63A19F72DBA007404CA /* XCXibDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCXibDefinition.m; sourceTree = "<group>"; };
+		9551703919F99F2300D1FEDF /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		9572F5D819F6CA080041B31C /* SuggestedColors.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuggestedColors.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		9572F5DB19F6CA080041B31C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		9572F5DD19F6CA080041B31C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -195,6 +198,7 @@
 				9572F61519F6CC2D0041B31C /* PrefencesView_WIP */,
 				9572F60519F6CA560041B31C /* SuggestedColors.h */,
 				9572F60619F6CA560041B31C /* SuggestedColors.m */,
+				6BAE29B09F03FADB483809E0 /* SuggestedColors.plist */,
 				9572F60319F6CA560041B31C /* Headers */,
 				9572F5E019F6CA080041B31C /* Supporting Files */,
 			);
@@ -237,6 +241,7 @@
 				9572F60119F6CA560041B31C /* ColorsViewController.m */,
 				9572F60219F6CA560041B31C /* ColorsViewController.xib */,
 				95A64AC719F804ED008B8F3B /* View.xib */,
+				9551703919F99F2300D1FEDF /* Storyboard.storyboard */,
 			);
 			name = PrefencesView_WIP;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9572F60B19F6CA560041B31C /* ColorsViewController.xib in Resources */,
+				9551703A19F99F2300D1FEDF /* Storyboard.storyboard in Resources */,
 				95A64AC819F804ED008B8F3B /* View.xib in Resources */,
 				9572F5E319F6CA080041B31C /* SuggestedColors.xcscheme in Resources */,
 			);

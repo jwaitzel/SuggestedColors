@@ -78,11 +78,14 @@ static SuggestedColors *sharedPlugin;
       NSError * error;
       [objc_getClass("DVTAbstractColorPicker") aspect_hookSelector:@selector(setSuggestedColorsUsingColorList:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> par){
           
-          if([self.suggestedColorsDic objectForKey:@"useMyColors"] == nil || [[self.suggestedColorsDic objectForKey:@"useMyColors"] boolValue])
-          {
-              DVTAbstractColorPicker * colorPicker = (DVTAbstractColorPicker *) par.instance;
-              colorPicker.suggestedColors = [self.suggestedColorsDic objectForKey:@"colors"];
+          if (self.suggestedColorsDic) {
+              if([self.suggestedColorsDic objectForKey:@"useMyColors"] == nil || [[self.suggestedColorsDic objectForKey:@"useMyColors"] boolValue])
+              {
+                  DVTAbstractColorPicker * colorPicker = (DVTAbstractColorPicker *) par.instance;
+                  colorPicker.suggestedColors = [self.suggestedColorsDic objectForKey:@"colors"];
+              }
           }
+          
       }error:&error];
 
 	}
