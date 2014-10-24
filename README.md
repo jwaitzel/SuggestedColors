@@ -11,6 +11,8 @@ Xcode plugin for replace the suggested colors in xcode.
 
 Go to Edit->Create SuggestedColors file and a plist will be created. Add colors there with NAME and HEX VALUE
 
+Change useMyColors entry to activate/deactivate it
+
 ## Important - Do not change plist file name
 For now :P
 
@@ -25,6 +27,10 @@ or
 
 
 In any case, relaunch Xcode to load it.
+
+## Known Issues
+1- I change useMyColors to NO/YES but the Interface Builder doesn't update
+  FIX: Alt-tab to another window and it should refresh
 
 ## Help needed
 
