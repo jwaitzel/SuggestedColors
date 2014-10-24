@@ -76,13 +76,16 @@ static SuggestedColors *sharedPlugin;
                                                  object:nil];
       
       NSError * error;
-      [objc_getClass("DVTAbstractColorPicker") aspect_hookSelector:@selector(setSuggestedColorsUsingColorList:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> par){
+      [objc_getClass("DVTAbstractColorPicker") aspect_hookSelector:@selector(setSuggestedColors:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> par){
           
           if (self.suggestedColorsDic) {
+
               if([self.suggestedColorsDic objectForKey:@"useMyColors"] == nil || [[self.suggestedColorsDic objectForKey:@"useMyColors"] boolValue])
               {
                   DVTAbstractColorPicker * colorPicker = (DVTAbstractColorPicker *) par.instance;
-                  colorPicker.suggestedColors = [self.suggestedColorsDic objectForKey:@"colors"];
+                  DVTMutableOrderedDictionary * dic =  [[objc_getClass("DVTMutableOrderedDictionary") alloc] initWithObjects:[[self.suggestedColorsDic objectForKey:@"colors"] allObjects] forKeys:[[self.suggestedColorsDic objectForKey:@"colors"] allKeys]];
+                  
+                  [colorPicker setValue:dic forKey:@"_suggestedColors"];
               }
           }
           
@@ -129,6 +132,9 @@ static SuggestedColors *sharedPlugin;
             NSColor * colorValue = NSColorFromRGB(colorInt);
             [newDic setObject:colorValue forKey:color];
         }
+        
+        [newDic setObject:[NSColor whiteColor] forKey:@"White color"];
+        [newDic setObject:[NSColor clearColor] forKey:@"Clear color"];
         
         [self.suggestedColorsDic setObject:newDic forKey:@"colors"];
     }
