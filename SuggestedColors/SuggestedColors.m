@@ -117,6 +117,10 @@ static SuggestedColors *sharedPlugin;
 
 -(void) reloadColors:(id) sender
 {
+    
+    if(self.projectBundlePath == nil)
+        return;
+    
     XCProject * proj = [[XCProject alloc] initWithFilePath:self.projectWorkspacePath];
     XCSourceFile * suggestedColorsFile = [proj fileWithName:SuggestedColorsPlistName];
     
