@@ -20,14 +20,14 @@ static NSString * const IDEEditorDocumentDidChangeNotification = @"IDEEditorDocu
 static NSString * const SuggestedColorsPlistName = @"SuggestedColors.plist";
 
 
-#define NSColorFromRGB(rgbValue) [NSColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define NSColorFromRGB(rgbValue) [NSColor colorWithCalibratedRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 static SuggestedColors *sharedPlugin;
+NSMutableDictionary *suggestedColorsDic;
 
 @interface SuggestedColors ()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
-@property (nonatomic, strong) NSMutableDictionary *suggestedColorsDic;
 @property (nonatomic, strong) NSString *projectBundlePath;
 @property (nonatomic, strong) NSString *projectWorkspacePath;
 @property (nonatomic, assign) BOOL menuItemAlreadyCreated;
@@ -57,8 +57,6 @@ static SuggestedColors *sharedPlugin;
 		self.bundle = plugin;
 
       // Register to notification center
-
-      
       [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(workspaceWindowDidBecomeMain:)
                                                    name:NSWindowDidBecomeMainNotification
@@ -78,18 +76,18 @@ static SuggestedColors *sharedPlugin;
       NSError * error;
       [objc_getClass("DVTAbstractColorPicker") aspect_hookSelector:@selector(setSuggestedColors:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> par){
           
-          if (self.suggestedColorsDic) {
+          if (suggestedColorsDic) {
 
-              if([self.suggestedColorsDic objectForKey:@"useMyColors"] == nil || [[self.suggestedColorsDic objectForKey:@"useMyColors"] boolValue])
+              if([suggestedColorsDic objectForKey:@"useMyColors"] == nil || [[suggestedColorsDic objectForKey:@"useMyColors"] boolValue])
               {
                   DVTAbstractColorPicker * colorPicker = (DVTAbstractColorPicker *) par.instance;
-                  DVTMutableOrderedDictionary * dic =  [[objc_getClass("DVTMutableOrderedDictionary") alloc] initWithObjects:[[self.suggestedColorsDic objectForKey:@"colors"] allObjects] forKeys:[[self.suggestedColorsDic objectForKey:@"colors"] allKeys]];
+                  DVTMutableOrderedDictionary * dic =  [[objc_getClass("DVTMutableOrderedDictionary") alloc] initWithObjects:[[suggestedColorsDic objectForKey:@"colors"] allObjects] forKeys:[[suggestedColorsDic objectForKey:@"colors"] allKeys]];
                   
                   [colorPicker setValue:dic forKey:@"_suggestedColors"];
               }
           }
           
-      }error:&error];
+      } error:&error];
 
 	}
 	return self;
@@ -127,20 +125,40 @@ static SuggestedColors *sharedPlugin;
     if(suggestedColorsFile)
     {
         NSString * pathFile = [[[proj filePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[suggestedColorsFile pathRelativeToProjectRoot]];
-        self.suggestedColorsDic = [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithContentsOfFile:pathFile]];
+        suggestedColorsDic = [NSMutableDictionary dictionaryWithDictionary:[NSDictionary dictionaryWithContentsOfFile:pathFile]];
         
         NSMutableDictionary * newDic = [NSMutableDictionary dictionary];
-        for (NSString * color in [self.suggestedColorsDic objectForKey:@"colors"]) {
-            unsigned colorInt = 0;
-            [[NSScanner scannerWithString:[[self.suggestedColorsDic objectForKey:@"colors"] objectForKey:color]] scanHexInt:&colorInt];
-            NSColor * colorValue = NSColorFromRGB(colorInt);
+        for (NSString * color in [suggestedColorsDic objectForKey:@"colors"]) {
+            NSString * colorString = [[suggestedColorsDic objectForKey:@"colors"] objectForKey:color];
+            NSColor * colorValue;
+            //Color in rgb(x,x,x) format
+            if ([colorString rangeOfString:@"rgb("].length > 0) {
+                colorString = [colorString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                char * rgbChars = (char *)[[[colorString stringByReplacingOccurrencesOfString:@"rgb(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] cStringUsingEncoding:NSUTF8StringEncoding];
+                int r = atoi(strtok(rgbChars, ","));
+                int g = atoi(strtok(NULL, ","));
+                int b = atoi(strtok(NULL, ","));
+                
+//                NSLog(@"r:%i, g:%i, b:%i", r,g,b);
+                colorValue = [NSColor colorWithCalibratedRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1.0];
+                
+            }
+            //Color in hex format
+            else {
+                unsigned colorInt = 0;
+                [[NSScanner scannerWithString:colorString] scanHexInt:&colorInt];
+                colorValue = NSColorFromRGB(colorInt);
+            }
+            
+            
+            
             [newDic setObject:colorValue forKey:color];
         }
         
         [newDic setObject:[NSColor whiteColor] forKey:@"White color"];
         [newDic setObject:[NSColor clearColor] forKey:@"Clear color"];
         
-        [self.suggestedColorsDic setObject:newDic forKey:@"colors"];
+        [suggestedColorsDic setObject:newDic forKey:@"colors"];
     }
     else{
         
