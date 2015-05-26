@@ -14,7 +14,7 @@
 #import "XCTarget.h"
 #import "XCSourceFile.h"
 #import "XCProject.h"
-#import "XCBuildConfiguration.h"
+#import "XCBuildConfig.h"
 
 @implementation XCTarget
 
@@ -81,7 +81,7 @@
         NSString* buildConfigurationRootSectionKey = [[[_project objects] objectForKey:_key] objectForKey:@"buildConfigurationList"];
         NSDictionary* buildConfigurationDictionary = [[_project objects] objectForKey:buildConfigurationRootSectionKey];
         _configurations =
-            [[XCBuildConfiguration buildConfigurationsFromArray:[buildConfigurationDictionary objectForKey:@"buildConfigurations"]
+            [[XCBuildConfig buildConfigurationsFromArray:[buildConfigurationDictionary objectForKey:@"buildConfigurations"]
                 inProject:_project] mutableCopy];
         _defaultConfigurationName = [[buildConfigurationDictionary objectForKey:@"defaultConfigurationName"] copy];
     }
@@ -89,12 +89,12 @@
     return _configurations;
 }
 
-- (XCBuildConfiguration*)defaultConfiguration
+- (XCBuildConfig*)defaultConfiguration
 {
     return [[self configurations] objectForKey:_defaultConfigurationName];
 }
 
-- (XCBuildConfiguration*)configurationWithName:(NSString*)name
+- (XCBuildConfig*)configurationWithName:(NSString*)name
 {
     return [[self configurations] objectForKey:name];
 }
@@ -242,7 +242,7 @@
     };
 
     dupTargetObj[@"buildConfigurationList"] =
-        [XCBuildConfiguration duplicatedBuildConfigurationListWithKey:buildConfigurationListKey inProject:_project
+        [XCBuildConfig duplicatedBuildConfigurationListWithKey:buildConfigurationListKey inProject:_project
             withBuildConfigurationVisitor:visitor];
 
     [self duplicateProductReferenceForTargetObject:dupTargetObj withProductName:productName];

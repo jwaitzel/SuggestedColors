@@ -19,7 +19,7 @@
 @class XCSourceFile;
 @class XCTarget;
 @class XCSubProjectDefinition;
-@class XCBuildConfiguration;
+@class XCBuildConfig;
 
 NSString* const XCProjectNotFoundException;
 
@@ -152,7 +152,7 @@ NSString* const XCProjectNotFoundException;
 
 - (NSDictionary*)configurationWithName:(NSString*)name;
 
-- (XCBuildConfiguration*)defaultConfiguration;
+- (XCBuildConfig*)defaultConfiguration;
 
 /* ====================================================================================================================================== */
 #pragma mark Saving

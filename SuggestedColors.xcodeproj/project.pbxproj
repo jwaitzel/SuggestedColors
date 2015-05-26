@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9504D63B19F72DBA007404CA /* XCKeyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61A19F72DBA007404CA /* XCKeyBuilder.m */; };
 		9504D63C19F72DBA007404CA /* XCAbstractDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61C19F72DBA007404CA /* XCAbstractDefinition.m */; };
-		9504D63D19F72DBA007404CA /* XCBuildConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61E19F72DBA007404CA /* XCBuildConfiguration.m */; };
+		9504D63D19F72DBA007404CA /* XCBuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61E19F72DBA007404CA /* XCBuildConfig.m */; };
 		9504D63E19F72DBA007404CA /* XCClassDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D62019F72DBA007404CA /* XCClassDefinition.m */; };
 		9504D63F19F72DBA007404CA /* XCFileOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D62219F72DBA007404CA /* XCFileOperationQueue.m */; };
 		9504D64019F72DBA007404CA /* XCFrameworkDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D62419F72DBA007404CA /* XCFrameworkDefinition.m */; };
@@ -44,8 +44,8 @@
 		9504D61A19F72DBA007404CA /* XCKeyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCKeyBuilder.m; sourceTree = "<group>"; };
 		9504D61B19F72DBA007404CA /* XCAbstractDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCAbstractDefinition.h; sourceTree = "<group>"; };
 		9504D61C19F72DBA007404CA /* XCAbstractDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCAbstractDefinition.m; sourceTree = "<group>"; };
-		9504D61D19F72DBA007404CA /* XCBuildConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildConfiguration.h; sourceTree = "<group>"; };
-		9504D61E19F72DBA007404CA /* XCBuildConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildConfiguration.m; sourceTree = "<group>"; };
+		9504D61D19F72DBA007404CA /* XCBuildConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCBuildConfig.h; sourceTree = "<group>"; };
+		9504D61E19F72DBA007404CA /* XCBuildConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCBuildConfig.m; sourceTree = "<group>"; };
 		9504D61F19F72DBA007404CA /* XCClassDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCClassDefinition.h; sourceTree = "<group>"; };
 		9504D62019F72DBA007404CA /* XCClassDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCClassDefinition.m; sourceTree = "<group>"; };
 		9504D62119F72DBA007404CA /* XCFileOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCFileOperationQueue.h; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 				9504D61819F72DBA007404CA /* Utils */,
 				9504D61B19F72DBA007404CA /* XCAbstractDefinition.h */,
 				9504D61C19F72DBA007404CA /* XCAbstractDefinition.m */,
-				9504D61D19F72DBA007404CA /* XCBuildConfiguration.h */,
-				9504D61E19F72DBA007404CA /* XCBuildConfiguration.m */,
+				9504D61D19F72DBA007404CA /* XCBuildConfig.h */,
+				9504D61E19F72DBA007404CA /* XCBuildConfig.m */,
 				9504D61F19F72DBA007404CA /* XCClassDefinition.h */,
 				9504D62019F72DBA007404CA /* XCClassDefinition.m */,
 				9504D62119F72DBA007404CA /* XCFileOperationQueue.h */,
@@ -320,7 +320,7 @@
 				9504D63E19F72DBA007404CA /* XCClassDefinition.m in Sources */,
 				9572F60A19F6CA560041B31C /* ColorsViewController.m in Sources */,
 				9504D64A19F72DBA007404CA /* XCXibDefinition.m in Sources */,
-				9504D63D19F72DBA007404CA /* XCBuildConfiguration.m in Sources */,
+				9504D63D19F72DBA007404CA /* XCBuildConfig.m in Sources */,
 				9504D63F19F72DBA007404CA /* XCFileOperationQueue.m in Sources */,
 				9504D63B19F72DBA007404CA /* XCKeyBuilder.m in Sources */,
 				9504D64619F72DBA007404CA /* XCSourceFile.m in Sources */,
