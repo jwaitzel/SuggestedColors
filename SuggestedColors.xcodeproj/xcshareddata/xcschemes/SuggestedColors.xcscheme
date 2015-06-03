@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "890A4B3E171F031300AFE577"
+               BlueprintIdentifier = "9572F5D719F6CA080041B31C"
                BuildableName = "SuggestedColors.xcplugin"
                BlueprintName = "SuggestedColors"
                ReferencedContainer = "container:SuggestedColors.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
+               BlueprintIdentifier = "5264F6F11B1E95090062633E"
                BuildableName = "SuggestedColorsTests.xctest"
                BlueprintName = "SuggestedColorsTests"
                ReferencedContainer = "container:SuggestedColors.xcodeproj">
@@ -56,12 +56,13 @@
       allowLocationSimulation = "NO"
       viewDebuggingEnabled = "No">
       <PathRunnable
+         runnableDebuggingMode = "0"
          FilePath = "/Applications/Xcode.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "890A4B3E171F031300AFE577"
+            BlueprintIdentifier = "9572F5D719F6CA080041B31C"
             BuildableName = "SuggestedColors.xcplugin"
             BlueprintName = "SuggestedColors"
             ReferencedContainer = "container:SuggestedColors.xcodeproj">

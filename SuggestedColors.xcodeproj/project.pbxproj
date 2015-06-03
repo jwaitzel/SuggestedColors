@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5264F6F71B1E95090062633E /* SuggestedColorsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5264F6F61B1E95090062633E /* SuggestedColorsTests.m */; };
 		9504D63B19F72DBA007404CA /* XCKeyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61A19F72DBA007404CA /* XCKeyBuilder.m */; };
 		9504D63C19F72DBA007404CA /* XCAbstractDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61C19F72DBA007404CA /* XCAbstractDefinition.m */; };
 		9504D63D19F72DBA007404CA /* XCBuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9504D61E19F72DBA007404CA /* XCBuildConfig.m */; };
@@ -39,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5264F6F21B1E95090062633E /* SuggestedColorsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuggestedColorsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5264F6F51B1E95090062633E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5264F6F61B1E95090062633E /* SuggestedColorsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestedColorsTests.m; sourceTree = "<group>"; };
 		6BAE29B09F03FADB483809E0 /* SuggestedColors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SuggestedColors.plist; sourceTree = "<group>"; };
 		9504D61919F72DBA007404CA /* XCKeyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCKeyBuilder.h; sourceTree = "<group>"; };
 		9504D61A19F72DBA007404CA /* XCKeyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCKeyBuilder.m; sourceTree = "<group>"; };
@@ -97,6 +101,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5264F6EF1B1E95090062633E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9572F5D619F6CA080041B31C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,6 +123,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5264F6F31B1E95090062633E /* SuggestedColorsTests */ = {
+			isa = PBXGroup;
+			children = (
+				5264F6F61B1E95090062633E /* SuggestedColorsTests.m */,
+				5264F6F41B1E95090062633E /* Supporting Files */,
+			);
+			path = SuggestedColorsTests;
+			sourceTree = "<group>";
+		};
+		5264F6F41B1E95090062633E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5264F6F51B1E95090062633E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		9504D61719F72DBA007404CA /* XCodeEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				9572F5DF19F6CA080041B31C /* SuggestedColors */,
+				5264F6F31B1E95090062633E /* SuggestedColorsTests */,
 				9572F5DA19F6CA080041B31C /* Frameworks */,
 				9572F5D919F6CA080041B31C /* Products */,
 			);
@@ -174,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				9572F5D819F6CA080041B31C /* SuggestedColors.xcplugin */,
+				5264F6F21B1E95090062633E /* SuggestedColorsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +279,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5264F6F11B1E95090062633E /* SuggestedColorsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5264F6FA1B1E95090062633E /* Build configuration list for PBXNativeTarget "SuggestedColorsTests" */;
+			buildPhases = (
+				5264F6EE1B1E95090062633E /* Sources */,
+				5264F6EF1B1E95090062633E /* Frameworks */,
+				5264F6F01B1E95090062633E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SuggestedColorsTests;
+			productName = SuggestedColorsTests;
+			productReference = 5264F6F21B1E95090062633E /* SuggestedColorsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9572F5D719F6CA080041B31C /* SuggestedColors */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9572F5E919F6CA080041B31C /* Build configuration list for PBXNativeTarget "SuggestedColors" */;
@@ -275,6 +322,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Monsters Inc";
 				TargetAttributes = {
+					5264F6F11B1E95090062633E = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
 					9572F5D719F6CA080041B31C = {
 						CreatedOnToolsVersion = 6.1;
 					};
@@ -293,11 +343,19 @@
 			projectRoot = "";
 			targets = (
 				9572F5D719F6CA080041B31C /* SuggestedColors */,
+				5264F6F11B1E95090062633E /* SuggestedColorsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5264F6F01B1E95090062633E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9572F5D519F6CA080041B31C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +370,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5264F6EE1B1E95090062633E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5264F6F71B1E95090062633E /* SuggestedColorsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9572F5D419F6CA080041B31C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +408,47 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		5264F6F81B1E95090062633E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SuggestedColorsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5264F6F91B1E95090062633E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SuggestedColorsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		9572F5E719F6CA080041B31C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -450,6 +557,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5264F6FA1B1E95090062633E /* Build configuration list for PBXNativeTarget "SuggestedColorsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5264F6F81B1E95090062633E /* Debug */,
+				5264F6F91B1E95090062633E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9572F5D319F6CA080041B31C /* Build configuration list for PBXProject "SuggestedColors" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
