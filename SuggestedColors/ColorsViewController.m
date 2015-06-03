@@ -35,7 +35,7 @@
     
     // Get an existing cell with the MyView identifier if it exists
     ColorCell *colorCell = [tableView makeViewWithIdentifier:@"ColorCell" owner:self];
-    colorCell.textField.stringValue = [NSString stringWithFormat:@"%i", row];
+    colorCell.textField.stringValue = [NSString stringWithFormat:@"%zd", row];
     colorCell.colorWell.color = [NSColor redColor];
     
     // Return the result
