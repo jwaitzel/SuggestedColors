@@ -14,7 +14,6 @@ Go to Edit->Create SuggestedColors file and a plist will be created. Add colors 
 Change useMyColors entry to activate/deactivate it
 
 ## Important - Do not change plist file name
-For now :P
 
 ## Installation
 Either
@@ -32,7 +31,4 @@ In any case, relaunch Xcode to load it.
 1- I change useMyColors to NO/YES but the Interface Builder doesn't update
   FIX: Alt-tab to another window and it should refresh
 
-## Help needed & PR are welcome
-
-Tweet me at [@javiwaitzel](https://twitter.com/javiwaitzel) or email me at [jwaitzel@gmail.com](mailto:jwaitzel@gmail.com)
 
